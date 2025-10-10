@@ -122,10 +122,9 @@ All datasets are synthetic or anonymized for ethical compliance.
 ---
 
 🧾 Citation 
-
-Sabbir Ahmed, Mst. Romana Khanom, Sanjid Talukder, and Md. Abdul Bashed.
+If you use this dataset or findings in your work, please cite:
+Sabbir Ahmed, Mst. Romana Khanom, Sanjid Talukder, and Md. Abdul Bashed M.A(2025).
 Beyond Accuracy: Building Trustworthy AI for Predictive Maintenance of Critical Care Medical Devices.
-Dhaka International University, Department of Computer Science and Engineering, 2025.
 Available at: https://github.com/sanjidtalukder/Beyond-Accuracy-Building-Trustworthy-AI-for-Predictive-Maintenance-of-Critical-Care-Medical-Devices
 
 ---
