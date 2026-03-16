@@ -1,130 +1,158 @@
-# 🧠 Medical-device-failure ai4i-stratified-subsample
+# Modified Machine Failure Dataset
 
-> **Author:** Sanjid Talukder  
-> **Affiliation:** Department of Computer Science & Engineering, Dhaka International University  
-> **Keywords:** Predictive Maintenance · Intensive Care Unit (ICU) · Machine Learning · LightGBM · Overfitting Prevention · Clinical AI · Group K-Fold Validation  
+## Overview
 
----
+This repository contains a **Modified Machine Failure Dataset** designed for research in **predictive maintenance, machine learning, and industrial data analysis**. The dataset includes machine operational parameters, environmental conditions, engineered features, and rule-based indicators to help analyze machine behavior and predict failures.
 
-## 📘 Abstract
-
-Unanticipated failures of medical devices in intensive care units compromise patient safety and disrupt clinical operations. Conventional maintenance strategies—whether based on fixed schedules or reactive repairs—often prove inefficient, either consuming resources unnecessarily or permitting critical breakdowns.  
-
-This study introduces a **predictive framework** that applies **machine learning methods** to forecast ICU device malfunctions, with **explicit safeguards against overfitting**, a common limitation in healthcare AI.  
-
-A dataset of **2,000 operational records**, enriched with **engineered clinical and mechanical indicators**, was analyzed using **LightGBM, XGBoost, Random Forest, and Gradient Boosting**.  
-Through a **rigorous validation pipeline**—combining **Group K-Fold**, **temporal holdouts**, **redundancy reduction**, and **synthetic perturbation testing**—the models maintained robust generalization (AUC ≈ 0.95) with recall rates exceeding 94%.  
-
-The **LightGBM** model demonstrated near-perfect performance (AUC: 0.9990, training time: 0.64 s) while preserving interpretability and efficiency.  
-Minimal performance degradation (0.06%) after feature elimination confirmed that predictions stemmed from genuine signal rather than spurious correlations.  
-
-> This repository presents both a specialized **ICU device failure prediction system** and a **transferable methodological template** for building **clinically trustworthy AI**.
+The dataset is useful for developing and evaluating **machine learning models for failure prediction and anomaly detection in industrial systems**.
 
 ---
 
-## ⚙️ Methodology Overview
-## 1. Data Acquisition & Preparation
+## Dataset File
 
-Source: 2,000 ICU device operational records
+* **File Name:** `Modified_Machine_Failure_Dataset.csv`
+* **Format:** CSV
+* **Rows:** 2000
+* **Columns:** 29
 
-Enriched with clinical + mechanical indicators
-
-Cleaning included outlier capping, null imputation, and correlation pruning
-
----
-
-## 2. Feature Engineering
-
-Computed mechanical stress, temperature differentials, power load, and usage cycles
-
-Normalized distributions to mitigate sensor bias
-
-Redundancy reduction to avoid leakage across devices.
+Each row represents a **single machine operational observation** with associated sensor measurements and failure indicators.
 
 ---
 
-## 3. Modeling Algorithms
+## Dataset Features
 
-| Algorithm             | Rationale                            | Key Strength                    |
-| --------------------- | ------------------------------------ | ------------------------------- |
-| **LightGBM**          | Gradient boosting on leaf-wise trees | High speed, low memory          |
-| **XGBoost**           | Robust ensemble learning             | Handles imbalance, fine-tunable |
-| **Random Forest**     | Interpretability baseline            | Handles noisy data              |
-| **Gradient Boosting** | Benchmark comparison                 | Stability vs complexity         |
+### Identification Columns
 
----
-
-## 4. Validation Framework
-
-* Group K-Fold Cross Validation (device-level isolation)
-
-* Temporal Holdout (future data integrity)
-
-* Synthetic Perturbation Tests (robustness evaluation)
-
-* Leakage Detection and Feature Redundancy Audits
+| Column     | Description                                          |
+| ---------- | ---------------------------------------------------- |
+| UDI        | Unique dataset identifier                            |
+| Product ID | Product identifier for each machine                  |
+| Type       | Machine type (L = Low, M = Medium, H = High quality) |
+| id         | Internal record identifier                           |
 
 ---
 
-## 📈 Key Results
+### Sensor Measurements
 
-| Metric                 |  LightGBM  | XGBoost | Random Forest | Gradient Boost |
-| :--------------------- | :--------: | :-----: | :-----------: | :------------: |
-| **AUC (Group K-Fold)** | **0.9990** |  0.9948 |     0.9712    |     0.9487     |
-| **Recall (%)**         |  **99.74** |  97.22  |     95.88     |      94.36     |
-| **Training Time (s)**  |  **0.64**  |   1.23  |      3.45     |      4.01      |
-
-✅ LightGBM achieved the best trade-off between performance, interpretability, and efficiency.
-🔒 Overfitting safeguards validated via synthetic noise injection and cross-device evaluation.
-
----
-
-## 🧠 Insights & Contributions
-
-📌 Introduced overfitting prevention protocols specialized for healthcare datasets
-
-🩺 Developed a clinically aligned evaluation strategy prioritizing recall/sensitivity
-
-⚙️ Delivered a reproducible predictive maintenance pipeline for ICU environments
-
-🔬 Contributed a trust-oriented AI validation template applicable beyond healthcare
+| Column                  | Description                             |
+| ----------------------- | --------------------------------------- |
+| Air temperature [K]     | Ambient air temperature in Kelvin       |
+| Process temperature [K] | Process temperature of the machine      |
+| Rotational speed [rpm]  | Rotational speed of the machine         |
+| Torque [Nm]             | Torque applied during machine operation |
+| Tool wear [min]         | Tool wear duration in minutes           |
 
 ---
 
-## 🧮 Tech Stack
+### Failure Labels
 
-| Category            | Tools                                                                             |
-| ------------------- | --------------------------------------------------------------------------------- |
-| **Languages**       | Python (3.11)                                                                     |
-| **Libraries**       | `LightGBM`, `XGBoost`, `scikit-learn`, `pandas`, `numpy`, `matplotlib`, `seaborn` |
-| **Validation**      | Group K-Fold, Synthetic Perturbation Testing                                      |
-| **Environment**     | JupyterLab / VS Code                                                              |
-| **Version Control** | Git & GitHub                                                                      |
+| Column            | Description                          |
+| ----------------- | ------------------------------------ |
+| Machine failure   | Original failure indicator           |
+| Machine failure.1 | Secondary failure label              |
+| failure           | Final target variable for prediction |
 
 ---
 
-## 🧩 Future Work
+### Rule-Based Indicators
 
-Integrate real-time data streaming from IoT medical sensors.
-
-Deploy explainable AI modules (SHAP, LIME) for clinician interpretability.
-
-Extend validation to multi-institutional datasets for broader generalizability.
-
----
-
-## 🛡️ Ethical Statement
-
-This research emphasizes patient safety, data privacy, and transparency.
-No personally identifiable patient data were used.
-All datasets are synthetic or anonymized for ethical compliance.
+| Column           | Description                                  |
+| ---------------- | -------------------------------------------- |
+| rule_tachycardia | Indicator for abnormal high-speed behavior   |
+| rule_tachypnea   | Indicator for abnormal operational condition |
+| rule_temp        | Temperature rule violation                   |
+| rule_wbc         | Additional anomaly detection rule            |
 
 ---
 
-🧾 Citation 
-If you use this dataset or findings in your work, please cite:
-Sabbir Ahmed, Mst. Romana Khanom, Sanjid Talukder, and Md. Abdul Bashed M.A(2025).
-Beyond Accuracy: Building Trustworthy AI for Predictive Maintenance of Critical Care Medical Devices.
-Available at: https://github.com/sanjidtalukder/Beyond-Accuracy-Building-Trustworthy-AI-for-Predictive-Maintenance-of-Critical-Care-Medical-Devices
+### Aggregated Risk Indicators
+
+| Column              | Description                                          |
+| ------------------- | ---------------------------------------------------- |
+| clinical_flag       | Flag triggered when abnormal conditions occur        |
+| meets_clinical_rule | Indicates if system meets predefined rule conditions |
+| clinical_risk_score | Aggregated risk score from rule indicators           |
 
 ---
+
+### Engineered Features
+
+| Column                  | Description                                    |
+| ----------------------- | ---------------------------------------------- |
+| thermal_gradient        | Difference between process and air temperature |
+| power_estimate          | Estimated mechanical power output              |
+| wear_rate_indicator     | Indicator of tool wear rate                    |
+| operating_regime        | Machine operational state                      |
+| seq_index               | Sequential observation index                   |
+| time_since_last_failure | Time since last failure event                  |
+| temp_stability          | Stability of temperature readings              |
+| wear_acceleration       | Rate of increase in tool wear                  |
+| operating_hours_proxy   | Estimated machine operating hours              |
+
+---
+
+### Encoded Feature
+
+| Column       | Description                        |
+| ------------ | ---------------------------------- |
+| Type_encoded | Numerical encoding of machine type |
+
+---
+
+## Target Variable
+
+The primary prediction target is:
+
+```
+failure
+```
+
+Where:
+
+* **0 → No Failure**
+* **1 → Machine Failure**
+
+This makes the dataset suitable for **binary classification problems**.
+
+---
+
+## Possible Applications
+
+This dataset can be used for:
+
+* Predictive maintenance research
+* Machine failure prediction
+* Industrial machine learning applications
+* Anomaly detection
+* Feature engineering experiments
+* Model benchmarking
+
+---
+
+## Example Usage (Python)
+
+```python
+import pandas as pd
+
+# Load dataset
+df = pd.read_csv("Modified_Machine_Failure_Dataset.csv")
+
+# Display first rows
+print(df.head())
+
+# Dataset shape
+print(df.shape)
+
+# Target distribution
+print(df['failure'].value_counts())
+```
+
+---
+
+## License
+
+This dataset is provided for **research and educational purposes only**.
+
+---
+
+
