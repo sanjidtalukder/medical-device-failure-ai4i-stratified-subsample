@@ -1,4 +1,4 @@
-# 🧠 Beyond Accuracy: Building Trustworthy AI for Predictive Maintenance of Critical Care Medical Devices
+# 🧠 Medical-device-failure ai4i-stratified-subsample
 
 > **Author:** Sanjid Talukder  
 > **Affiliation:** Department of Computer Science & Engineering, Dhaka International University  
